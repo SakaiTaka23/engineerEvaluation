@@ -22,15 +22,7 @@ class FetchData implements FetchDataInterface
         ];
     }
 
-    public function fetchPublicRepo()
-    {
-    }
-
-    public function fetchComitSum()
-    {
-    }
-
-    public function fetchIssues()
+    public function fetchIssues(): string
     {
         $url = $this->baseurl . "search/issues?q=+is:issue+user:" . $this->name;
         $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
@@ -38,7 +30,7 @@ class FetchData implements FetchDataInterface
         return $issues;
     }
 
-    public function fetchPullRequests()
+    public function fetchPullRequests(): string
     {
         $url = $this->baseurl . "search/issues?q=is:pr+author:" . $this->name;
         $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
@@ -46,15 +38,7 @@ class FetchData implements FetchDataInterface
         return $pullRequest;
     }
 
-    public function fetchStarSum()
-    {
-    }
-
-    public function fetchFollowers()
-    {
-    }
-
-    public function publicRepoFollowers()
+    public function publicRepoFollowers(): array
     {
         $url = $this->baseurl . "users/" . $this->name;
         $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
@@ -63,7 +47,7 @@ class FetchData implements FetchDataInterface
         return [$publicRepo, $followers];
     }
 
-    public function commitStar()
+    public function commitStar(): array
     {
         $commitCount = 0;
         $starCount = 0;
