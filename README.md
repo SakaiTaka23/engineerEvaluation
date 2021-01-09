@@ -82,17 +82,21 @@ sail artisan migrate:fresh
 
 
 
-
-
-## ロジックの実装手順
-
-### ルール
+## ロジックの実装ルール
 
 * 基本的に必要になる関数は app/Service に記述
 * Serviceにはインターフェース
 * Productionにはその実装
+* データの取得、データ計算は別クラスに作成
 
 
+
+## ロジックのクラス
+
+* CalculateRank,CalculateRankInterface：ユーザーの評価に関するクラス
+* FetchData,FetchDataInterface：ユーザーのデータを取得するクラス
+* OffsetData,OffsetDataInterface：計算途中のオフセットの保存、計算をするクラス
+* RankData,RankDataInterface：ユーザー評価のランクを保存、計算するクラス
 
 
 
