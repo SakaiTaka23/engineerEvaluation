@@ -93,10 +93,43 @@ sail artisan migrate:fresh
 
 ## ロジックのクラス
 
-* CalculateRank,CalculateRankInterface：ユーザーの評価に関するクラス
-* FetchData,FetchDataInterface：ユーザーのデータを取得するクラス
-* OffsetData,OffsetDataInterface：計算途中のオフセットの保存、計算をするクラス
-* RankData,RankDataInterface：ユーザー評価のランクを保存、計算するクラス
+* それぞれにはその名前＋Interfaceのインターフェースを作成
+
+### CalculateRank
+* [ ] 
+* ユーザーの評価に関するクラス
+* 下のクラスの関数を順番に実行、累積分布
+
+### FetchData
+* [ ] 
+* ユーザーのデータを取得するクラス
+* ~~apiを叩くにはlaravel-githubを使用~~
+* apiは自力で叩いてみる
+* 各要素のデータを取得するものはprivate
+* 各要素のデータを取得する、それらの関数の結果をまとめて返す
+
+#### 順番
+
+* 同時に複数取れる関数はそのurlを叩く専用の関数を作る？
+
+1. public_repo,followers→https://api.github.com/users/SakaiTaka23
+2. pull_requests→https://api.github.com/search/issues?q=is:pr+author:SakaiTaka23
+3. issues→https://api.github.com/search/issues?q=+is:issue+user:SakaiTaka23
+4. commit_sum,star_sum→https://api.github.com/users/SakaiTaka23/repos forkrepoも取れるので除ける
+
+
+
+### OffsetData
+* [x] 
+* 計算途中のオフセットの保存、計算をするクラス
+* オフセットは全てprivate
+* オフセット合計返却、ユーザーの値をもとにスコアを計算する
+### RankData
+* [x] 
+* ユーザー評価のランクを保存、計算するクラス
+* ランクはその値以下であるかどうかで判断
+* ランク値は全てprivate
+* ランク合計、スコアからランクを出す
 
 
 
@@ -109,7 +142,9 @@ sail artisan migrate:fresh
 
 ## TODO
 
-* [ ]  ロジック作成
+* [x]  設計のドキュメント作成
+* [x]  laravel-githubの使い方を調べる→自分の欲しい情報を考えると使う必要性はない気がする
+* [ ] ロジック作成
 * [ ] コントローラー実装
 * [ ] ランディングページ作成
 
