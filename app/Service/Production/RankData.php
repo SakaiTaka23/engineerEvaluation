@@ -15,11 +15,6 @@ class RankData implements RankDataInterface
     // TOTAL_VALUES = RANK_S_VALUE + RANK_DOUBLE_A_VALUE + RANK_A2_VALUE + RANK_A3_VALUE + RANK_B_VALUE
     private const TOTAL_VALUE = 231;
 
-    public function getTotalValue(): int
-    {
-        return RankData::TOTAL_VALUE;
-    }
-
     public function calcRank(float $normalizedScore): string
     {
         $rank = "";
@@ -40,5 +35,10 @@ class RankData implements RankDataInterface
                 $rank = "B+";
         }
         return $rank;
+    }
+
+    public function getTotalValue(): int
+    {
+        return RankData::TOTAL_VALUE;
     }
 }
