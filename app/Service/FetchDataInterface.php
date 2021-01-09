@@ -11,5 +11,5 @@ interface FetchDataInterface
 
     public function setName(string $name): void;
 
-    public function summarizeData(string $name);
+    public function summarizeData(string $name): array;
 }

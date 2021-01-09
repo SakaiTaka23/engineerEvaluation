@@ -27,7 +27,7 @@ class FetchData implements FetchDataInterface
         $url = $this->baseurl . "search/issues?q=+is:issue+user:" . $this->name;
         $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
         $issues = $response['total_count'];
-        return $issues;
+        return intval($issues);
     }
 
     public function fetchPullRequests(): string
@@ -35,7 +35,7 @@ class FetchData implements FetchDataInterface
         $url = $this->baseurl . "search/issues?q=is:pr+author:" . $this->name;
         $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
         $pullRequest = $response['total_count'];
-        return $pullRequest;
+        return intval($pullRequest);
     }
 
     public function publicRepoFollowers(): array
@@ -68,12 +68,11 @@ class FetchData implements FetchDataInterface
                     break;
                 }
                 $page++;
-                if ($page >= 3) {
-                    var_dump($commitCount, $starCount, count($res));
-                    echo "error happend!!! or commits is more than 200";
+                if ($page > 5) {
+                    var_dump($fullname, $commitCount, $starCount, count($res));
+                    echo "[ERROR] error happend!!! or commits is more than 400!\n";
                     break;
                 }
-                var_dump($fullname, $commitCount, $starCount);
             }
         }
         return [$commitCount, $starCount];
@@ -84,9 +83,21 @@ class FetchData implements FetchDataInterface
         $this->name = $name;
     }
 
-    public function summarizeData(string $name)
+    public function summarizeData(string $name): array
     {
         $this->setName($name);
-        // public_repo followers
+        // publicRepo followers
+        list($publicRepo, $followers) = $this->publicRepoFollowers();
+        // pullRequests
+        $pullRequest = $this->fetchPullRequests();
+        // issues
+        $issues = $this->fetchIssues();
+        // commitSum starSum
+        list($commitSum, $starSum) = $this->commitStar();
+
+        $summarizedData = array($publicRepo, $commitSum, $issues, $pullRequest, $starSum, $followers);
+        // return [publicRepo commitSum issues pullRequests starSum followers]
+        dd($summarizedData);
+        return $summarizedData;
     }
 }
