@@ -59,6 +59,29 @@ class FetchData implements FetchDataInterface
 
     public function commitStar()
     {
+        $commitCount = 0;
+        $starCount = 0;
+        $url = $this->baseurl . "users/" . $this->name . "/repos";
+        $response = json_decode($this->client->request($this->method, $url)->getBody(), true);
+        foreach ($response as $item) {
+            if ($item['fork']) {
+                continue;
+            }
+            $starCount += $item['stargazers_count'];
+            $fullname = $item['full_name'];
+            $page = 1;
+            $url = 'https://api.github.com/repos/' . $fullname . '/commits?per_page=100&page=' . $page;
+            while (true) {
+                $res = json_decode($this->client->request($this->method, $url)->getBody(), true);
+                $commitCount += count($res);
+                if (count($res) == 0) {
+                    break;
+                }
+                $page++;
+                var_dump($commitCount, $starCount);
+            }
+        }
+        return [$commitCount, $starCount];
     }
 
     public function setName(string $name): void

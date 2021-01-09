@@ -113,9 +113,14 @@ sail artisan migrate:fresh
 * 同時に複数取れる関数はそのurlを叩く専用の関数を作る？
 
 1. public_repo,followers→https://api.github.com/users/SakaiTaka23
+
 2. pull_requests→https://api.github.com/search/issues?q=is:pr+author:SakaiTaka23
+
 3. issues→https://api.github.com/search/issues?q=+is:issue+user:SakaiTaka23
+
 4. commit_sum,star_sum→https://api.github.com/users/SakaiTaka23/repos forkrepoも取れるので除ける
+
+   https://api.github.com/repos/SakaiTaka23/chase/commits?per_page=100&page=2
 
 
 
