@@ -10,9 +10,10 @@ class FetchData implements FetchDataInterface
     public function __construct(Client $client)
     {
         $this->client = $client;
+        $this->api_token = env("GITHUB_API_TOKEN");
         $this->method = "GET";
         $this->baseurl = "https://api.github.com/";
-        $this->name = "";
+        $this->name = "SakaiTaka23";
     }
 
     public function fetchPublicRepo()
@@ -49,7 +50,11 @@ class FetchData implements FetchDataInterface
 
     public function publicRepoFollowers()
     {
-        $url = $this->baseurl + "users/" + $this->name;
+        $url = $this->baseurl . "users/" . $this->name;
+        $response = json_decode($this->client->request($this->method, $url)->getBody(), true);
+        $publicRepo = $response['public_repos'];
+        $followers = $response['followers'];
+        return [$publicRepo, $followers];
     }
 
     public function commitStar()
