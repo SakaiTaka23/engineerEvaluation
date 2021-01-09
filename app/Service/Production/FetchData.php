@@ -14,6 +14,12 @@ class FetchData implements FetchDataInterface
         $this->method = "GET";
         $this->baseurl = "https://api.github.com/";
         $this->name = "SakaiTaka23";
+        $this->options = [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . env("GITHUB_API_TOKEN"),
+            ]
+        ];
     }
 
     public function fetchPublicRepo()
@@ -27,7 +33,7 @@ class FetchData implements FetchDataInterface
     public function fetchIssues()
     {
         $url = $this->baseurl . "search/issues?q=+is:issue+user:" . $this->name;
-        $response = json_decode($this->client->request($this->method, $url)->getBody(), true);
+        $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
         $issues = $response['total_count'];
         return $issues;
     }
@@ -35,7 +41,7 @@ class FetchData implements FetchDataInterface
     public function fetchPullRequests()
     {
         $url = $this->baseurl . "search/issues?q=is:pr+author:" . $this->name;
-        $response = json_decode($this->client->request($this->method, $url)->getBody(), true);
+        $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
         $pullRequest = $response['total_count'];
         return $pullRequest;
     }
@@ -51,7 +57,7 @@ class FetchData implements FetchDataInterface
     public function publicRepoFollowers()
     {
         $url = $this->baseurl . "users/" . $this->name;
-        $response = json_decode($this->client->request($this->method, $url)->getBody(), true);
+        $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
         $publicRepo = $response['public_repos'];
         $followers = $response['followers'];
         return [$publicRepo, $followers];
@@ -62,7 +68,7 @@ class FetchData implements FetchDataInterface
         $commitCount = 0;
         $starCount = 0;
         $url = $this->baseurl . "users/" . $this->name . "/repos";
-        $response = json_decode($this->client->request($this->method, $url)->getBody(), true);
+        $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
         foreach ($response as $item) {
             if ($item['fork']) {
                 continue;
@@ -70,15 +76,20 @@ class FetchData implements FetchDataInterface
             $starCount += $item['stargazers_count'];
             $fullname = $item['full_name'];
             $page = 1;
-            $url = 'https://api.github.com/repos/' . $fullname . '/commits?per_page=100&page=' . $page;
             while (true) {
-                $res = json_decode($this->client->request($this->method, $url)->getBody(), true);
+                $url = 'https://api.github.com/repos/' . $fullname . '/commits?per_page=100&page=' . $page;
+                $res = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
                 $commitCount += count($res);
                 if (count($res) == 0) {
                     break;
                 }
                 $page++;
-                var_dump($commitCount, $starCount);
+                if ($page >= 3) {
+                    var_dump($commitCount, $starCount, count($res));
+                    echo "error happend!!! or commits is more than 200";
+                    break;
+                }
+                var_dump($fullname, $commitCount, $starCount);
             }
         }
         return [$commitCount, $starCount];
