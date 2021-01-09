@@ -25,10 +25,18 @@ class FetchData implements FetchDataInterface
 
     public function fetchIssues()
     {
+        $url = $this->baseurl . "search/issues?q=+is:issue+user:" . $this->name;
+        $response = json_decode($this->client->request($this->method, $url)->getBody(), true);
+        $issues = $response['total_count'];
+        return $issues;
     }
 
     public function fetchPullRequests()
     {
+        $url = $this->baseurl . "search/issues?q=is:pr+author:" . $this->name;
+        $response = json_decode($this->client->request($this->method, $url)->getBody(), true);
+        $pullRequest = $response['total_count'];
+        return $pullRequest;
     }
 
     public function fetchStarSum()
