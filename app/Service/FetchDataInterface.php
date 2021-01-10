@@ -4,8 +4,8 @@ namespace App\Service;
 
 interface FetchDataInterface
 {
-    public function fetchIssues(): string;
-    public function fetchPullRequests(): string;
+    public function fetchIssues(): int;
+    public function fetchPullRequests(): int;
     public function publicRepoFollowers(): array;
     public function commitStar(): array;
 

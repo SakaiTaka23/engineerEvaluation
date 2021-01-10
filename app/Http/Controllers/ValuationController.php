@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Service\FetchDataInterface;
+use App\Service\CalculateRankInterface;
 
 class ValuationController extends Controller
 {
-    public function __construct(FetchDataInterface $fetch)
+    public function __construct(CalculateRankInterface $rank)
     {
-        $this->fetch = $fetch;
+        $this->rank = $rank;
     }
 
     public function index()
     {
-        $this->fetch->publicRepoFollowers();
+        $rank = $this->rank->evaluation("SakaiTaka23");
         return view('welcome');
     }
 }

@@ -13,7 +13,7 @@ class FetchData implements FetchDataInterface
         $this->api_token = env("GITHUB_API_TOKEN");
         $this->method = "GET";
         $this->baseurl = "https://api.github.com/";
-        $this->name = "SakaiTaka23";
+        $this->name = "";
         $this->options = [
             'headers' => [
                 'Accept' => 'application/json',
@@ -22,7 +22,7 @@ class FetchData implements FetchDataInterface
         ];
     }
 
-    public function fetchIssues(): string
+    public function fetchIssues(): int
     {
         $url = $this->baseurl . "search/issues?q=+is:issue+user:" . $this->name;
         $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
@@ -30,7 +30,7 @@ class FetchData implements FetchDataInterface
         return intval($issues);
     }
 
-    public function fetchPullRequests(): string
+    public function fetchPullRequests(): int
     {
         $url = $this->baseurl . "search/issues?q=is:pr+author:" . $this->name;
         $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
@@ -97,7 +97,7 @@ class FetchData implements FetchDataInterface
 
         $summarizedData = array($publicRepo, $commitSum, $issues, $pullRequest, $starSum, $followers);
         // return [publicRepo commitSum issues pullRequests starSum followers]
-        dd($summarizedData);
+        var_dump($summarizedData);
         return $summarizedData;
     }
 }

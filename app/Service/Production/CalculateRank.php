@@ -3,16 +3,52 @@
 namespace App\Service\Production;
 
 use App\Service\CalculateRankInterface;
+use App\Service\FetchDataInterface;
+use App\Service\OffsetDataInterface;
+use App\Service\RankDataInterface;
 
 class CalculateRank implements CalculateRankInterface
 {
-    public function evaluation(string $name): array
+    public function __construct(FetchDataInterface $fetch, OffsetDataInterface $offset, RankDataInterface $rank)
     {
-        return [];
+        $this->fetch = $fetch;
+        $this->offset = $offset;
+        $this->rank = $rank;
     }
 
-    public function normalcdf(int $mean, int $sigma, int $to): int
+    public function evaluation(string $name): array
     {
-        return 0;
+        $summarizedData = $this->fetch->summarizeData($name);
+        $userScore = $this->offset->calcScore(
+            $summarizedData[0],
+            $summarizedData[1],
+            $summarizedData[2],
+            $summarizedData[3],
+            $summarizedData[4],
+            $summarizedData[5]
+        );
+        $totalValue = $this->rank->getTotalValue();
+        $allOffset = $this->offset->getAllOffset();
+        $normalizedScore = $this->normalcdf($userScore, $totalValue, $allOffset);
+        $userRank = $this->rank->calcRank($normalizedScore);
+        dd($userScore, $normalizedScore, $userRank);
+        return [$normalizedScore, $userRank];
+    }
+
+    public function normalcdf(int $mean, int $sigma, int $to): float
+    {
+        $z = ($to - $mean) / sqrt(2 * $sigma * $sigma);
+        $t = 1 / (1 + 0.3275911 * abs($z));
+        $a1 = 0.254829592;
+        $a2 = -0.284496736;
+        $a3 = 1.421413741;
+        $a4 = -1.453152027;
+        $a5 = 1.061405429;
+        $erf = 1 - (((($a5 * $t + $a4) * $t + $a3) * $t + $a2) * $t + $a1) * $t * exp(-$z * $z);
+        $sign = 1;
+        if ($z < 0) {
+            $sign = -1;
+        }
+        return (1 / 2) * (1 + $sign * $erf);
     }
 }
