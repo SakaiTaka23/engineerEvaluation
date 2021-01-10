@@ -99,9 +99,19 @@ sail artisan migrate:fresh
 * [ ] 
 * ユーザーの評価に関するクラス
 * 下のクラスの関数を順番に実行、累積分布
+* 最終的なランク、点数を返却
+
+#### 順番
+
+1. FetchData
+2. OffsetData
+3. normalcdf(累積分布)
+4. RankData
+
+
 
 ### FetchData
-* [ ] 
+* [x] 
 * ユーザーのデータを取得するクラス
 * ~~apiを叩くにはlaravel-githubを使用~~
 * apiは自力で叩いてみる
@@ -121,8 +131,6 @@ sail artisan migrate:fresh
 4. commit_sum,star_sum→https://api.github.com/users/SakaiTaka23/repos forkrepoも取れるので除ける
 
    https://api.github.com/repos/SakaiTaka23/chase/commits?per_page=100&page=2
-
-
 
 ### OffsetData
 * [x] 
