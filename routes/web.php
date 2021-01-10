@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('valuation', [ValuationController::class, 'index'])->name('valuateEngineer');
+Route::post('valuation', [ValuationController::class, 'result'])->name('valuateEngineerResult');
