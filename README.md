@@ -126,7 +126,7 @@ sail artisan migrate:fresh
 
 3. issues→https://api.github.com/search/issues?q=+is:issue+user:SakaiTaka23
 
-4. commit_sum,star_sum→https://api.github.com/users/SakaiTaka23/repos forkrepoも取れるので除ける
+4. commit_sum,star_sum→https://api.github.com/users/SakaiTaka23/repos forkrepoも取れるので除ける 空リポジトリの場合の例外処理をする
 
    https://api.github.com/repos/SakaiTaka23/chase/commits?per_page=100&page=2
 

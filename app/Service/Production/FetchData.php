@@ -4,6 +4,7 @@ namespace App\Service\Production;
 
 use GuzzleHttp\Client;
 use App\Service\FetchDataInterface;
+use Exception;
 
 class FetchData implements FetchDataInterface
 {
@@ -62,7 +63,13 @@ class FetchData implements FetchDataInterface
             $page = 1;
             while (true) {
                 $url = 'https://api.github.com/repos/' . $fullname . '/commits?per_page=100&page=' . $page;
-                $res = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
+                // $res = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
+                try {
+                    $res = $this->client->request($this->method, $url, $this->options);
+                    $res = json_decode($res->getBody(), true);
+                } catch (Exception $e) {
+                    break;
+                }
                 $commitCount += count($res);
                 if (count($res) == 0) {
                     break;
