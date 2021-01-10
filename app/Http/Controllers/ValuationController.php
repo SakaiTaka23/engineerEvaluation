@@ -13,13 +13,10 @@ class ValuationController extends Controller
         $this->rank = $rank;
     }
 
-    public function index()
+    public function result(Request $request)
     {
-        return view('index');
-    }
-
-    public function result()
-    {
+        $username = $request->userName;
+        dd($username);
         /**
          * @todo 受け取った後に名前が有効かどうか確認すること!!!
          */
