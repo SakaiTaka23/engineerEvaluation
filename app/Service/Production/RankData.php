@@ -7,13 +7,17 @@ use App\Service\RankDataInterface;
 class RankData implements RankDataInterface
 {
     // 上位何%かを表す
-    private const RANK_S_VALUE = 1;
-    private const RANK_DOUBLE_A_VALUE = 25;
-    private const RANK_A2_VALUE = 45;
-    private const RANK_A3_VALUE = 60;
-    // private const RANK_B_VALUE = 100;
-    // TOTAL_VALUES = RANK_S_VALUE + RANK_DOUBLE_A_VALUE + RANK_A2_VALUE + RANK_A3_VALUE + RANK_B_VALUE
-    private const TOTAL_VALUE = 231;
+    private const RANK_S_PERCENTAGE = 1;
+    private const RANK_DOUBLE_A_PERCENTAGE = 25;
+    private const RANK_A2_PERCENTAGE = 45;
+    private const RANK_A3_PERCENTAGE = 60;
+    private const RANK_B_PERCENTAGE = 100;
+    private const TOTAL_PERCENTAGE = RankData::RANK_S_PERCENTAGE + RankData::RANK_DOUBLE_A_PERCENTAGE + RankData::RANK_A2_PERCENTAGE + RankData::RANK_A3_PERCENTAGE + RankData::RANK_B_PERCENTAGE;
+
+    private const RANK_S_VALUE = 49;
+    private const RANK_DOUBLE_A_VALUE = 49.5;
+    private const RANK_A2_VALUE = 50;
+    private const RANK_A3_VALUE = 51;
 
     public function calcRank(float $normalizedScore): string
     {
@@ -39,6 +43,6 @@ class RankData implements RankDataInterface
 
     public function getTotalValue(): int
     {
-        return RankData::TOTAL_VALUE;
+        return RankData::TOTAL_PERCENTAGE;
     }
 }
