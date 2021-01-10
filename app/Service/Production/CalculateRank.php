@@ -29,7 +29,8 @@ class CalculateRank implements CalculateRankInterface
         );
         $totalValue = $this->rank->getTotalValue();
         $allOffset = $this->offset->getAllOffset();
-        $normalizedScore = $this->normalcdf($userScore, $totalValue, $allOffset);
+        $normalizedScore = $this->normalcdf($userScore, $totalValue, $allOffset) * 100;
+        $normalizedScore = round($normalizedScore, 3);
         $userRank = $this->rank->calcRank($normalizedScore);
         dd($userScore, $normalizedScore, $userRank);
         return [$normalizedScore, $userRank];

@@ -97,7 +97,7 @@ class FetchData implements FetchDataInterface
 
         $summarizedData = array($publicRepo, $commitSum, $issues, $pullRequest, $starSum, $followers);
         // return [publicRepo commitSum issues pullRequests starSum followers]
-        var_dump($summarizedData);
+        var_dump($this->name, $summarizedData);
         return $summarizedData;
     }
 }
