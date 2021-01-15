@@ -76,7 +76,6 @@ class FetchData implements FetchDataInterface
                 }
                 $page++;
                 if ($page > 5) {
-                    var_dump($fullname, $commitCount, $starCount, count($res));
                     echo "[ERROR] error happend!!! or commits is more than 400!\n";
                     break;
                 }
@@ -104,7 +103,6 @@ class FetchData implements FetchDataInterface
 
         $summarizedData = array($publicRepo, $commitSum, $issues, $pullRequest, $starSum, $followers);
         // return [publicRepo commitSum issues pullRequests starSum followers]
-        var_dump($this->name, $summarizedData);
         return $summarizedData;
     }
 }

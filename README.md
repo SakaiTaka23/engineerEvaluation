@@ -46,11 +46,11 @@ sail artisan migrate:fresh
 
 ## ビューに渡す要素
 
-| route            | value needed         |
-| ---------------- | -------------------- |
-| /                | -                    |
-| /valuation(GET)  | - フォームを渡すだけ |
-| /valuation(POST) | 評価の結果、個々の値 |
+| route            | value needed               |
+| ---------------- | -------------------------- |
+| /                | -                          |
+| /valuation(GET)  | - フォームを渡すだけ       |
+| /valuation(POST) | 名前、個々の値、評価の結果 |
 
 
 

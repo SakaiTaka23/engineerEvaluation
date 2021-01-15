@@ -32,8 +32,7 @@ class CalculateRank implements CalculateRankInterface
         $normalizedScore = $this->normalcdf($userScore, $totalValue, $allOffset) * 100;
         $normalizedScore = round($normalizedScore, 3);
         $userRank = $this->rank->calcRank($normalizedScore);
-        dd($userScore, $normalizedScore, $userRank);
-        return [$normalizedScore, $userRank];
+        return [$summarizedData, $userRank];
     }
 
     public function normalcdf(int $mean, int $sigma, int $to): float
