@@ -21,7 +21,7 @@ class ValuationController extends Controller
             'userName' => ['required', new UserExists],
         ]);
         $username = $request->userName;
-        list($user_data, $rank) = $this->rank->evaluation("SakaiTaka23");
+        list($user_data, $rank) = $this->rank->evaluation($username);
         $viewModel = new ResultViewModel($username, $user_data[0], $user_data[1], $user_data[2], $user_data[3], $user_data[4], $user_data[5], $rank);
         // 擬似データ
         // $viewModel = new ResultViewModel("SakaiTaka23", 1, 1, 1, 1, 1, 1, "A+");
