@@ -26,7 +26,7 @@ class ValuationController extends Controller
          */
         // ↓ビュー確認後コメントアウト
         // $rank = $this->rank->evaluation("SakaiTaka23");
-        $rank = [50.0, "A+"];
+        $rank = ["A+"];
         return view('result', 'rank');
     }
 }

@@ -50,7 +50,7 @@ sail artisan migrate:fresh
 | ---------------- | -------------------- |
 | /                | -                    |
 | /valuation(GET)  | - フォームを渡すだけ |
-| /valuation(POST) | 評価の結果           |
+| /valuation(POST) | 評価の結果、個々の値 |
 
 
 

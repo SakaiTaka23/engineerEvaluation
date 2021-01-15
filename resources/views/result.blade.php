@@ -86,14 +86,14 @@
                                 <thead>
                                     <tr>
                                         <th
-                                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-3x1 text-grey-dark border-b border-grey-light">
                                         </th>
                                         <th
-                                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-3x1 text-grey-dark border-b border-grey-light">
                                             Element
                                         </th>
                                         <th
-                                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-3x1 text-grey-dark border-b border-grey-light">
                                             Value
                                         </th>
                                     </tr>
@@ -141,6 +141,13 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+                            <h1>Your Rank</h1>
+                            <div class="w-full mb-4">
+                                <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+                            </div>
+                            <h1>A+</h1>
                         </div>
                     </div>
 
