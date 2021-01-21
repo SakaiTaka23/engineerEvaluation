@@ -157,12 +157,27 @@ sail artisan migrate:fresh
 
 ## TODO
 
-* [x]  設計のドキュメント作成
-* [x]  laravel-githubの使い方を調べる→自分の欲しい情報を考えると使う必要性はない気がする
-* [x] ロジック作成
-* [x] コントローラー実装→**入力ユーザーの確認**
-* [x] 入力ページ
-* [ ] コントローラーでの入力バリデーション
-* [ ] 結果表示ページ
-* [x] ランディングページ作成
+* [x]  php cx fixer ,php docs 適用
+* [ ]  fetchDataをfetchGitHubAPIに直す
+* [ ]  fetchData内のfetchを修正
+* [ ]  setName修正
+
+
+
+
+
+## Features
+
+* [ ] 全体の改良
+
+
+* [ ]  1. DBにデータを保存
+* [ ] 2. ロジックをコマンド化
+* [ ] 3. mailを作ってみる
+
+
+
+* [ ] 共有しやすくする
+* [ ] 1. twitter 拡散ボタン
+* [ ] 2. twitter card作成
 
