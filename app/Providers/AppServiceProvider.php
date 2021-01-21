@@ -13,7 +13,6 @@ use App\Service\Production\FetchData;
 use App\Service\Production\OffsetData;
 use App\Service\Production\RankData;
 
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
