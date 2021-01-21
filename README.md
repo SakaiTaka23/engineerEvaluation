@@ -141,8 +141,10 @@ sail artisan migrate:fresh
 
 -   [x] php cx fixer ,php docs 適用
 -   [x] FetchData を FetchGitHubAPI に直す
--   [ ]  修正後のFetchGitHubAPI内の fetch を削除
--   [ ] setName 修正
+-   [x]  修正後のFetchGitHubAPI内の fetch を削除
+-   [x] setName 修正→全ての引数に名前を取ることにした
+
+
 
 ## Features
 
@@ -151,6 +153,9 @@ sail artisan migrate:fresh
 -   [ ] 1. DB にデータを保存
 -   [ ] 2. ロジックをコマンド化
 -   [ ] 3. mail を作ってみる
+
+
+
 
 -   [ ] 共有しやすくする
 -   [ ] 1. twitter 拡散ボタン

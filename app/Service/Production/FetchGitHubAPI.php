@@ -11,10 +11,8 @@ class FetchGitHubAPI implements FetchGitHubAPIInterface
     public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->api_token = env("GITHUB_API_TOKEN");
         $this->method = "GET";
         $this->baseurl = "https://api.github.com/";
-        $this->name = "";
         $this->options = [
             'headers' => [
                 'Accept' => 'application/json',
@@ -23,36 +21,36 @@ class FetchGitHubAPI implements FetchGitHubAPIInterface
         ];
     }
 
-    public function Issues(): int
+    public function Issues(string $name): int
     {
-        $url = $this->baseurl . "search/issues?q=+is:issue+user:" . $this->name;
+        $url = $this->baseurl . "search/issues?q=+is:issue+user:" . $name;
         $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
         $issues = $response['total_count'];
         return intval($issues);
     }
 
-    public function PullRequests(): int
+    public function PullRequests(string $name): int
     {
-        $url = $this->baseurl . "search/issues?q=is:pr+author:" . $this->name;
+        $url = $this->baseurl . "search/issues?q=is:pr+author:" . $name;
         $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
         $pullRequest = $response['total_count'];
         return intval($pullRequest);
     }
 
-    public function publicRepoFollowers(): array
+    public function publicRepoFollowers(string $name): array
     {
-        $url = $this->baseurl . "users/" . $this->name;
+        $url = $this->baseurl . "users/" . $name;
         $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
         $publicRepo = $response['public_repos'];
         $followers = $response['followers'];
         return [$publicRepo, $followers];
     }
 
-    public function commitStar(): array
+    public function commitStar(string $name): array
     {
         $commitCount = 0;
         $starCount = 0;
-        $url = $this->baseurl . "users/" . $this->name . "/repos";
+        $url = $this->baseurl . "users/" . $name . "/repos";
         $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
         foreach ($response as $item) {
             if ($item['fork']) {
@@ -84,22 +82,16 @@ class FetchGitHubAPI implements FetchGitHubAPIInterface
         return [$commitCount, $starCount];
     }
 
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
-
     public function summarizeData(string $name): array
     {
-        $this->setName($name);
         // publicRepo followers
-        list($publicRepo, $followers) = $this->publicRepoFollowers();
+        list($publicRepo, $followers) = $this->publicRepoFollowers($name);
         // pullRequests
-        $pullRequest = $this->PullRequests();
+        $pullRequest = $this->PullRequests($name);
         // issues
-        $issues = $this->Issues();
+        $issues = $this->Issues($name);
         // commitSum starSum
-        list($commitSum, $starSum) = $this->commitStar();
+        list($commitSum, $starSum) = $this->commitStar($name);
 
         $summarizedData = array($publicRepo, $commitSum, $issues, $pullRequest, $starSum, $followers);
         // return [publicRepo commitSum issues pullRequests starSum followers]
