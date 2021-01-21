@@ -23,7 +23,7 @@ class FetchGitHubAPI implements FetchGitHubAPIInterface
         ];
     }
 
-    public function fetchIssues(): int
+    public function Issues(): int
     {
         $url = $this->baseurl . "search/issues?q=+is:issue+user:" . $this->name;
         $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
@@ -31,7 +31,7 @@ class FetchGitHubAPI implements FetchGitHubAPIInterface
         return intval($issues);
     }
 
-    public function fetchPullRequests(): int
+    public function PullRequests(): int
     {
         $url = $this->baseurl . "search/issues?q=is:pr+author:" . $this->name;
         $response = json_decode($this->client->request($this->method, $url, $this->options)->getBody(), true);
@@ -95,9 +95,9 @@ class FetchGitHubAPI implements FetchGitHubAPIInterface
         // publicRepo followers
         list($publicRepo, $followers) = $this->publicRepoFollowers();
         // pullRequests
-        $pullRequest = $this->fetchPullRequests();
+        $pullRequest = $this->PullRequests();
         // issues
-        $issues = $this->fetchIssues();
+        $issues = $this->Issues();
         // commitSum starSum
         list($commitSum, $starSum) = $this->commitStar();
 

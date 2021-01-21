@@ -140,8 +140,8 @@ sail artisan migrate:fresh
 ## TODO
 
 -   [x] php cx fixer ,php docs 適用
--   [x] fetchData を FetchGitHubAPI に直す
--   [ ] fetchData 内の fetch を修正
+-   [x] FetchData を FetchGitHubAPI に直す
+-   [ ]  修正後のFetchGitHubAPI内の fetch を削除
 -   [ ] setName 修正
 
 ## Features

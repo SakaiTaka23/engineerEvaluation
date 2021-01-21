@@ -4,8 +4,8 @@ namespace App\Service;
 
 interface FetchGitHubAPIInterface
 {
-    public function fetchIssues(): int;
-    public function fetchPullRequests(): int;
+    public function Issues(): int;
+    public function PullRequests(): int;
     public function publicRepoFollowers(): array;
     public function commitStar(): array;
 
