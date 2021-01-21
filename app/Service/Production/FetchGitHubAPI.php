@@ -3,10 +3,10 @@
 namespace App\Service\Production;
 
 use GuzzleHttp\Client;
-use App\Service\FetchDataInterface;
+use App\Service\FetchGitHubAPIInterface;
 use Exception;
 
-class FetchData implements FetchDataInterface
+class FetchGitHubAPI implements FetchGitHubAPIInterface
 {
     public function __construct(Client $client)
     {

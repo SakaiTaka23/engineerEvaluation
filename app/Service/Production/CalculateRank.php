@@ -3,13 +3,13 @@
 namespace App\Service\Production;
 
 use App\Service\CalculateRankInterface;
-use App\Service\FetchDataInterface;
+use App\Service\FetchGitHubAPIInterface;
 use App\Service\OffsetDataInterface;
 use App\Service\RankDataInterface;
 
 class CalculateRank implements CalculateRankInterface
 {
-    public function __construct(FetchDataInterface $fetch, OffsetDataInterface $offset, RankDataInterface $rank)
+    public function __construct(FetchGitHubAPIInterface $fetch, OffsetDataInterface $offset, RankDataInterface $rank)
     {
         $this->fetch = $fetch;
         $this->offset = $offset;

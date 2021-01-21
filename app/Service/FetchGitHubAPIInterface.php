@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-interface FetchDataInterface
+interface FetchGitHubAPIInterface
 {
     public function fetchIssues(): int;
     public function fetchPullRequests(): int;
