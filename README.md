@@ -45,10 +45,34 @@ sail artisan migrate:fresh
 | /valuation(GET)  | - フォームを渡すだけ       |
 | /valuation(POST) | 名前、個々の値、評価の結果 |
 
-## モデル・DB
+## DB
 
--   モデルはいらないかも？
--   DB はいらない
+* Redisを採用しようと思ったが後にスケジュールを回すと考えるとmysqlが安定？
+* 調査するユーザーの名前、タスク途中で出てくる値を保存
+
+* スケジューラーの情報も保存
+
+users テーブル
+
+* 既に生成されたものを改変して使用
+
+* 計算途中の値を保存
+
+* 全ての値を保存するのではなく複数のクラスに引き渡す値のみを保存
+
+  →たまたまユーザーに返却するデータとなった
+
+| カラム        | 型     |
+| ------------- | ------ |
+| id            | id     |
+| name          | string |
+| public_repo   | int    |
+| commit_sum    | int    |
+| issues        | int    |
+| pull_requests | int    |
+| star_sum      | int    |
+| followers     | int    |
+| user_rank     | string |
 
 ## エンジニア評価の方針
 
@@ -83,7 +107,8 @@ sail artisan migrate:fresh
 
 ### CalculateRank
 
--   [x]
+* [x] 
+
 -   ユーザーの評価に関するクラス
 -   下のクラスの関数を順番に実行、累積分布
 -   最終的なランク、点数を返却(小数第３まで)
@@ -97,7 +122,8 @@ sail artisan migrate:fresh
 
 ### FetchGitHubAPI
 
--   [x]
+* [x] 
+
 -   ユーザーのデータを取得するクラス
 -   ~~api を叩くには laravel-github を使用~~
 -   api は自力で叩いてみる
@@ -120,14 +146,16 @@ sail artisan migrate:fresh
 
 ### OffsetData
 
--   [x]
+* [x] 
+
 -   計算途中のオフセットの保存、計算をするクラス
 -   オフセットは全て private
 -   オフセット合計返却、ユーザーの値をもとにスコアを計算する
 
 ### RankData
 
--   [x]
+* [x] 
+
 -   ユーザー評価のランクを保存、計算するクラス
 -   ランクはその値以下であるかどうかで判断
 -   ランク値は全て private
@@ -143,6 +171,8 @@ sail artisan migrate:fresh
 -   [x] FetchData を FetchGitHubAPI に直す
 -   [x]  修正後のFetchGitHubAPI内の fetch を削除
 -   [x] setName 修正→全ての引数に名前を取ることにした
+-   [ ] 全体の改良
+-   [ ] 共有しやすくする
 
 
 

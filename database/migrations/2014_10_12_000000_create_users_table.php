@@ -16,11 +16,13 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->integer('public_repo')->default(0);
+            $table->integer('commit_sum')->default(0);
+            $table->integer('issues')->default(0);
+            $table->integer('pull_requests')->default(0);
+            $table->integer('star_sum')->default(0);
+            $table->integer('followers')->default(0);
+            $table->string('user_rank')->default('B+');
         });
     }
 
