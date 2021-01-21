@@ -29,13 +29,13 @@ class CalculateRank implements CalculateRankInterface
         );
         $totalValue = $this->rank->getTotalValue();
         $allOffset = $this->offset->getAllOffset();
-        $normalizedScore = $this->normalcdf($userScore, $totalValue, $allOffset) * 100;
+        $normalizedScore = $this->normalCdf($userScore, $totalValue, $allOffset) * 100;
         $normalizedScore = round($normalizedScore, 3);
         $userRank = $this->rank->calcRank($normalizedScore);
         return [$summarizedData, $userRank];
     }
 
-    public function normalcdf(int $mean, int $sigma, int $to): float
+    public function normalCdf(int $mean, int $sigma, int $to): float
     {
         $z = ($to - $mean) / sqrt(2 * $sigma * $sigma);
         $t = 1 / (1 + 0.3275911 * abs($z));
