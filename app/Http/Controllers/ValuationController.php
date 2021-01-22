@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Models\ResultViewModel;
 use App\Mail\SendResult;
 use App\Rules\UserExists;
 use Illuminate\Http\Request;
@@ -31,7 +30,8 @@ class ValuationController extends Controller
     //     return view('result', compact('viewModel'));
     // }
 
-    public function loading(Request $request){
+    public function loading(Request $request)
+    {
         $request->validate([
             'name' => ['required', new UserExists],
             'email' => ['required','email']
