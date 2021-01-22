@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Models\ResultViewModel;
+use App\Mail\SendResult;
 use App\Rules\UserExists;
 use Illuminate\Http\Request;
 
 use App\Service\CalculateRankInterface;
+use Illuminate\Support\Facades\Mail;
 
 class ValuationController extends Controller
 {
@@ -31,8 +33,17 @@ class ValuationController extends Controller
 
     public function loading(Request $request){
         $request->validate([
-            'userName' => ['required', new UserExists],
+            'name' => ['required', new UserExists],
+            'email' => ['required','email']
         ]);
+
+        $mailTo = (object)[
+            'name' => $request->name,
+            'email' => $request->email,
+        ];
+        var_dump($mailTo);
+        Mail::to($mailTo)->send(new SendResult());
+
         return view('loading');
     }
 }

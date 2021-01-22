@@ -58,9 +58,12 @@
                     <form method="POST" action="{{ route('valuationLoading') }}">
                         @csrf
                         <div class='flex flex-col'>
-                            <input type="text" name="userName" id='userName'
+                            <input type="text" name="name" id="name"
                                 class="shadow appearance-none border rounded py-2 px-3 text-gray-darker"
                                 placeholder="Your GitHub Name" style="color: black">
+                            <input type="text" name="email" id="email"
+                                class="shadow appearance-none border rounded py-2 px-3 text-gray-darker"
+                                placeholder="Your Email" style="color: black">
                             @if ($errors->any())
                             <div class="text-red-500">
                                 <ul>
