@@ -13,6 +13,7 @@ interface UserRepositoryInterface{
 
     /**
      * 取得したユーザーのデータをDBへ保存
+     * @param string $name
      * @param int $publicRepo
      * @param int $commitSum
      * @param int $issues
@@ -21,15 +22,16 @@ interface UserRepositoryInterface{
      * @param int $followers
      * @return void
      */
-    public function setUserStats(int $publicRepo,int $commitSum,int $issues,int $pullRequests,int $starSum,int $followers):void;
+    public function setUserStats(string $name,int $publicRepo,int $commitSum,int $issues,int $pullRequests,int $starSum,int $followers):void;
 
     /**
      * 計算後のランクを保存
      * ランクは S+,S,A++,A+,B+
+     * @param string $name
      * @param string $rank
      * @return void
      */
-    public function setUserRank(string $rank):void;
+    public function setUserRank(string $name,string $rank):void;
 
     /**
      * タスクをコマンド化するときに実装
