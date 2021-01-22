@@ -7,9 +7,9 @@ interface CalculateRankInterface
     /**
      * 他の関数を呼び出す軸
      * @param string $name
-     * @return array
+     * @return void スケジューラー回す時点で名前はわかっているはずだから返す必要なし！
      */
-    public function evaluation(string $name): array;
+    public function evaluation(string $name): void;
 
     /**
      * 累積分布関数の計算

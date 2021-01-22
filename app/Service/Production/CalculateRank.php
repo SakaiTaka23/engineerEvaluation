@@ -18,26 +18,26 @@ class CalculateRank implements CalculateRankInterface
         $this->repository = $repository;
     }
 
-    public function evaluation(string $name): array
+    public function evaluation(string $name): void
     {
         $this->repository->setTask($name);
-        $summarizedData = $this->fetch->summarizeData($name);
+        $this->fetch->summarizeData($name);
         $userStats = $this->repository->getUserStats($name);
         $userScore = $this->offset->calcScore(
-            $summarizedData[0],
-            $summarizedData[1],
-            $summarizedData[2],
-            $summarizedData[3],
-            $summarizedData[4],
-            $summarizedData[5]
+            $userStats->public_repo,
+            $userStats->commit_sum,
+            $userStats->issues,
+            $userStats->pull_requests,
+            $userStats->star_sum,
+            $userStats->followers
         );
         $totalValue = $this->rank->getTotalValue();
         $allOffset = $this->offset->getAllOffset();
-        $normalizedScore = $this->normalCdf($userScore, $totalValue, $allOffset) * 100;
-        $normalizedScore = round($normalizedScore, 3);
+        $normalizedScore = round($this->normalCdf($userScore, $totalValue, $allOffset) * 100,3);
         $userRank = $this->rank->calcRank($normalizedScore);
         $this->repository->setUserRank($name, $userRank);
-        return [$summarizedData, $userRank];
+        $result = $this->repository->getResults($name);
+        dd("計算結果",$result);
     }
 
     public function normalCdf(int $mean, int $sigma, int $to): float

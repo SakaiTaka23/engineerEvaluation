@@ -41,9 +41,11 @@ class UserRepository implements UserRepositoryInterface
             ]);
     }
 
-    public function getResults(string $name)
+    public function getResults(string $name):object
     {
-        $result = DB::table('users')->where('name', $name)->get();
-        dd($result);
+        return DB::table('users')
+        ->where('name', $name)
+        ->select(['name','public_repo','commit_sum','issues','pull_requests','star_sum','followers','user_rank'])
+        ->first();
     }
 }

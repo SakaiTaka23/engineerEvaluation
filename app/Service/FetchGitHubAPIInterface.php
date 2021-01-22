@@ -35,7 +35,7 @@ interface FetchGitHubAPIInterface
     /**
      * ステータス全体を取得 クラス内の関数を実行して計算
      * @param string $name
-     * @return array [$publicRepo, $commitSum, $issues, $pullRequest, $starSum, $followers]
+     * @return void
      */
-    public function summarizeData(string $name): array;
+    public function summarizeData(string $name): void;
 }

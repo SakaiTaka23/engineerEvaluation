@@ -84,8 +84,8 @@ class FetchGitHubAPI implements FetchGitHubAPIInterface
         return [$commitCount, $starCount];
     }
 
-    public function summarizeData(string $name): array
-    {
+    public function summarizeData(string $name): void 
+       {
         // publicRepo followers
         list($publicRepo, $followers) = $this->publicRepoFollowers($name);
         // pullRequests
@@ -98,8 +98,5 @@ class FetchGitHubAPI implements FetchGitHubAPIInterface
         $summarizedData = array($publicRepo, $commitSum, $issues, $pullRequest, $starSum, $followers);
 
         $this->repository->setUserStats($name,$publicRepo,$commitSum,$issues,$pullRequest,$starSum,$followers);
-
-        // return [publicRepo commitSum issues pullRequests starSum followers]
-        return $summarizedData;
     }
 }

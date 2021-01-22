@@ -47,7 +47,7 @@ interface UserRepositoryInterface
      * @param string $name
      * @return
      */
-    public function getResults(string $name);
+    public function getResults(string $name):object;
 
     /**
      * タスクをコマンド化するときに実装
