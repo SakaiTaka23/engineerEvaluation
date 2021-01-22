@@ -178,7 +178,7 @@ sail artisan migrate:fresh
 ## TODO
 
 -   [x] php cx fixer 
--   [ ] php docs 適用
+-   [x] php docs 適用
 -   [x] FetchData を FetchGitHubAPI に直す
 -   [x]  修正後のFetchGitHubAPI内の fetch を削除
 -   [x] setName 修正→全ての引数に名前を取ることにした
