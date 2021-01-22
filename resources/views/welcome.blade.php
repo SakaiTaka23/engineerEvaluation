@@ -55,7 +55,7 @@
                         <br>
                         Improve Your Skills!
                     </p>
-                    <form method="POST" action="{{ route('valuateEngineerResult') }}">
+                    <form method="POST" action="{{ route('valuationLoading') }}">
                         @csrf
                         <div class='flex flex-col'>
                             <input type="text" name="userName" id='userName'

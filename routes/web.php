@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::post('valuation', [ValuationController::class, 'result'])->name('valuateEngineerResult');
+Route::post('loading', [ValuationController::class,'loading'])->name('valuationLoading');
 
 Route::get('/test', function () {
     return view('result');
