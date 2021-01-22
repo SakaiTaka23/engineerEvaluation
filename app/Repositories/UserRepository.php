@@ -8,7 +8,7 @@ class UserRepository implements UserRepositoryInterface
 {
     public function setTask(string $name): void
     {
-        DB::table('users')->create(['name'=>$name]);
+        DB::table('users')->insert(['name'=>$name]);
     }
 
     public function setUserStats(string $name,int $publicRepo, int $commitSum, int $issues, int $pullRequests, int $starSum, int $followers): void

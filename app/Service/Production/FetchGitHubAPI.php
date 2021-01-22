@@ -2,13 +2,14 @@
 
 namespace App\Service\Production;
 
+use App\Repositories\UserRepositoryInterface;
 use GuzzleHttp\Client;
 use App\Service\FetchGitHubAPIInterface;
 use Exception;
 
 class FetchGitHubAPI implements FetchGitHubAPIInterface
 {
-    public function __construct(Client $client)
+    public function __construct(Client $client,UserRepositoryInterface $repository)
     {
         $this->client = $client;
         $this->method = "GET";
@@ -19,6 +20,7 @@ class FetchGitHubAPI implements FetchGitHubAPIInterface
                 'Authorization' => 'Bearer ' . env("GITHUB_API_TOKEN"),
             ]
         ];
+        $this->repository = $repository;
     }
 
     public function Issues(string $name): int
@@ -94,6 +96,9 @@ class FetchGitHubAPI implements FetchGitHubAPIInterface
         list($commitSum, $starSum) = $this->commitStar($name);
 
         $summarizedData = array($publicRepo, $commitSum, $issues, $pullRequest, $starSum, $followers);
+
+        $this->repository->setUserStats($name,$publicRepo,$commitSum,$issues,$pullRequest,$starSum,$followers);
+
         // return [publicRepo commitSum issues pullRequests starSum followers]
         return $summarizedData;
     }

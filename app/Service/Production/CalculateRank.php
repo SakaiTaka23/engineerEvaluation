@@ -2,6 +2,7 @@
 
 namespace App\Service\Production;
 
+use App\Repositories\UserRepositoryInterface;
 use App\Service\CalculateRankInterface;
 use App\Service\FetchGitHubAPIInterface;
 use App\Service\OffsetDataInterface;
@@ -9,15 +10,17 @@ use App\Service\RankDataInterface;
 
 class CalculateRank implements CalculateRankInterface
 {
-    public function __construct(FetchGitHubAPIInterface $fetch, OffsetDataInterface $offset, RankDataInterface $rank)
+    public function __construct(FetchGitHubAPIInterface $fetch, OffsetDataInterface $offset, RankDataInterface $rank, UserRepositoryInterface $repository)
     {
         $this->fetch = $fetch;
         $this->offset = $offset;
         $this->rank = $rank;
+        $this->repository = $repository;
     }
 
     public function evaluation(string $name): array
     {
+        $this->repository->setTask($name);
         $summarizedData = $this->fetch->summarizeData($name);
         $userScore = $this->offset->calcScore(
             $summarizedData[0],
@@ -32,6 +35,7 @@ class CalculateRank implements CalculateRankInterface
         $normalizedScore = $this->normalCdf($userScore, $totalValue, $allOffset) * 100;
         $normalizedScore = round($normalizedScore, 3);
         $userRank = $this->rank->calcRank($normalizedScore);
+        $this->repository->setUserRank($name, $userRank);
         return [$summarizedData, $userRank];
     }
 

@@ -171,6 +171,18 @@ sail artisan migrate:fresh
 -   ランク値は全て private
 -   ランク合計、スコアからランクを出す
 
+## Repository
+
+* app/Repositoriesに記載
+* 一つしかないためインターフェース、クラスのフォルダ分けはしていない
+
+**計算のため使用する順番**
+
+1. setTask タスク実行のための初期設定として名前を登録しデータを作成 : evaluationの最初に使用
+2. setUserStats fetchしたデータを一気に登録 : FetchGitHubAPIの最後に使用→**summarizeDataの返り値も調整**
+3. setUserRank 計算後のランクを登録 : evaluationの最後に使用
+4. finishTask まだ未実装 タスク終了フラグを立てる : evaluationの最後に使用
+
 ## 今の課題
 
 -   api トークンの扱い → 自分以外のユーザーもいるので自分のものだけでは厳しそう
@@ -192,7 +204,7 @@ sail artisan migrate:fresh
 
 -   [ ] 全体の改良
 
--   [ ] 1. DB にデータを保存
+-   [ ] 1. DB にデータを保存 とりあえずロジックは変えずにDB保存を追加するだけ読み出さずに検証→実際にDBのみに保存して検証
 -   [ ] 2. ロジックをコマンド化
 -   [ ] 3. mail を作ってみる
 
