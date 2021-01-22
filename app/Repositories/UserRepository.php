@@ -31,4 +31,10 @@ class UserRepository implements UserRepositoryInterface
             'user_rank'=>$rank
             ]);
     }
+
+    public function getResults(string $name)
+    {
+        $result = DB::table('users')->where('name', $name)->get();
+        dd($result);
+    }
 }

@@ -80,6 +80,10 @@ sail artisan migrate:fresh
 | followers     | int    |
 | user_rank     | string |
 
+
+
+
+
 ## エンジニア評価の方針
 
 1. 必要な値取得
@@ -173,10 +177,12 @@ sail artisan migrate:fresh
 
 ## TODO
 
--   [x] php cx fixer ,php docs 適用
+-   [x] php cx fixer 
+-   [ ] php docs 適用
 -   [x] FetchData を FetchGitHubAPI に直す
 -   [x]  修正後のFetchGitHubAPI内の fetch を削除
 -   [x] setName 修正→全ての引数に名前を取ることにした
+
 -   [ ] 全体の改良
 -   [ ] 共有しやすくする
 

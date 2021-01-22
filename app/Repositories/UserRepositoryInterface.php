@@ -34,6 +34,14 @@ interface UserRepositoryInterface{
     public function setUserRank(string $name,string $rank):void;
 
     /**
+     * 今までの結果を取得、返却
+     * コレクションを整形して返したい
+     * @param string $name
+     * @return
+     */
+    public function getResults(string $name);
+
+    /**
      * タスクをコマンド化するときに実装
      * タスク終了フラグを立てる
      */

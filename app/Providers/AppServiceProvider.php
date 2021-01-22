@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\UserRepository;
+use App\Repositories\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 use App\Service\CalculateRankInterface;
@@ -26,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(FetchGitHubAPIInterface::class, FetchGitHubAPI::class);
         $this->app->singleton(OffsetDataInterface::class, OffsetData::class);
         $this->app->singleton(RankDataInterface::class, RankData::class);
+        $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
     }
 
     /**
