@@ -6,10 +6,11 @@ interface CalculateRankInterface
 {
     /**
      * 他の関数を呼び出す軸
+     * 返り値の要素は固定
      * @param string $name
-     * @return void スケジューラー回す時点で名前はわかっているはずだから返す必要なし！
+     * @return object {name,public_repo,commit_sum,issues,pull_requests,star_sum,followers,user_rank}
      */
-    public function evaluation(string $name): void;
+    public function evaluation(string $name): object;
 
     /**
      * 累積分布関数の計算

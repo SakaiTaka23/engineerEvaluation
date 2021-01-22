@@ -9,7 +9,7 @@ use Exception;
 
 class FetchGitHubAPI implements FetchGitHubAPIInterface
 {
-    public function __construct(Client $client,UserRepositoryInterface $repository)
+    public function __construct(Client $client, UserRepositoryInterface $repository)
     {
         $this->client = $client;
         $this->method = "GET";
@@ -84,8 +84,8 @@ class FetchGitHubAPI implements FetchGitHubAPIInterface
         return [$commitCount, $starCount];
     }
 
-    public function summarizeData(string $name): void 
-       {
+    public function summarizeData(string $name): void
+    {
         // publicRepo followers
         list($publicRepo, $followers) = $this->publicRepoFollowers($name);
         // pullRequests
@@ -97,6 +97,6 @@ class FetchGitHubAPI implements FetchGitHubAPIInterface
 
         $summarizedData = array($publicRepo, $commitSum, $issues, $pullRequest, $starSum, $followers);
 
-        $this->repository->setUserStats($name,$publicRepo,$commitSum,$issues,$pullRequest,$starSum,$followers);
+        $this->repository->setUserStats($name, $publicRepo, $commitSum, $issues, $pullRequest, $starSum, $followers);
     }
 }

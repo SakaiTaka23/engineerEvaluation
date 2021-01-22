@@ -11,9 +11,9 @@ class UserRepository implements UserRepositoryInterface
         DB::table('users')->insert(['name'=>$name]);
     }
 
-    public function setUserStats(string $name,int $publicRepo, int $commitSum, int $issues, int $pullRequests, int $starSum, int $followers): void
+    public function setUserStats(string $name, int $publicRepo, int $commitSum, int $issues, int $pullRequests, int $starSum, int $followers): void
     {
-        DB::table('users')->where('name',$name)
+        DB::table('users')->where('name', $name)
         ->update([
             'public_repo'=>$publicRepo,
             'commit_sum'=>$commitSum,
@@ -27,15 +27,15 @@ class UserRepository implements UserRepositoryInterface
     public function getUserStats(string $name):object
     {
         $result = DB::table('users')
-        ->where('name',$name)
+        ->where('name', $name)
         ->select(['public_repo','commit_sum','issues','pull_requests','star_sum','followers'])
         ->first();
         return $result;
     }
 
-    public function setUserRank(string $name,string $rank): void
+    public function setUserRank(string $name, string $rank): void
     {
-        DB::table('users')->where('name',$name)
+        DB::table('users')->where('name', $name)
         ->update([
             'user_rank'=>$rank
             ]);
