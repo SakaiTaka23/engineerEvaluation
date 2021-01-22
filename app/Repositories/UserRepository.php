@@ -24,6 +24,15 @@ class UserRepository implements UserRepositoryInterface
             ]);
     }
 
+    public function getUserStats(string $name):object
+    {
+        $result = DB::table('users')
+        ->where('name',$name)
+        ->select(['public_repo','commit_sum','issues','pull_requests','star_sum','followers'])
+        ->first();
+        return $result;
+    }
+
     public function setUserRank(string $name,string $rank): void
     {
         DB::table('users')->where('name',$name)

@@ -22,6 +22,7 @@ class CalculateRank implements CalculateRankInterface
     {
         $this->repository->setTask($name);
         $summarizedData = $this->fetch->summarizeData($name);
+        $userStats = $this->repository->getUserStats($name);
         $userScore = $this->offset->calcScore(
             $summarizedData[0],
             $summarizedData[1],

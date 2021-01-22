@@ -2,7 +2,8 @@
 
 namespace App\Repositories;
 
-interface UserRepositoryInterface{
+interface UserRepositoryInterface
+{
 
     /**
      * タスクの初期設定 名前をDBへ保存
@@ -22,7 +23,14 @@ interface UserRepositoryInterface{
      * @param int $followers
      * @return void
      */
-    public function setUserStats(string $name,int $publicRepo,int $commitSum,int $issues,int $pullRequests,int $starSum,int $followers):void;
+    public function setUserStats(string $name, int $publicRepo, int $commitSum, int $issues, int $pullRequests, int $starSum, int $followers):void;
+
+    /**
+     * setUserStatsで設定して値を読み込む 返り値の要素は確定
+     * @param string $name
+     * @return object {public_repo,commit_sum,issues,pull_requests,star_sum,followers}
+     */
+    public function getUserStats(string $name):object;
 
     /**
      * 計算後のランクを保存
@@ -31,7 +39,7 @@ interface UserRepositoryInterface{
      * @param string $rank
      * @return void
      */
-    public function setUserRank(string $name,string $rank):void;
+    public function setUserRank(string $name, string $rank):void;
 
     /**
      * 今までの結果を取得、返却
