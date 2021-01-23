@@ -18,9 +18,9 @@ class CalculateRank implements CalculateRankInterface
         $this->repository = $repository;
     }
 
-    public function evaluation(string $name, string $mail): int
+    public function evaluation(int $id): int
     {
-        $this->repository->setTask($name, $mail);
+        $name = $this->repository->getTask($id);
         $this->fetch->summarizeData($name);
         $userStats = $this->repository->getUserStats($name);
         $userScore = $this->offset->calcScore(

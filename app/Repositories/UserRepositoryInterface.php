@@ -8,9 +8,16 @@ interface UserRepositoryInterface
     /**
      * タスクの初期設定 名前をDBへ保存
      * @param string $name
-     * @return void
+     * @return int 作成したカラムのid
      */
-    public function setTask(string $name, string $mail):void;
+    public function setTask(string $name, string $mail):int;
+
+    /**
+     * idを受け取りそのカラムのnameを返す
+     * @param int $id
+     * @return string ユーザー名
+     */
+    public function getTask(int $id):string;
 
     /**
      * 取得したユーザーのデータをDBへ保存
@@ -55,10 +62,4 @@ interface UserRepositoryInterface
      * @return object {name,email,public_repo,commit_sum,issues,pull_requests,star_sum,followers}
      */
     public function getResult(int $id):object;
-
-    /**
-     * タスクをコマンド化するときに実装
-     * タスク終了フラグを立てる
-     */
-    // public function finistTask(string $name):void;
 }

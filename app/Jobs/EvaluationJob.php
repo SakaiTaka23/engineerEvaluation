@@ -19,9 +19,9 @@ class EvaluationJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(int $id)
     {
-        //
+        $this->id = $id;
     }
 
     /**
@@ -31,7 +31,7 @@ class EvaluationJob implements ShouldQueue
      */
     public function handle()
     {
-        $id = Artisan::command('task:evaluate Pukumon job.puku@gmail.com');
-        Artisan::command('task:sendresult' . $id);
+        Artisan::command('task:evaluate '.$this->id);
+        Artisan::command('task:sendresult ' . $this->id);
     }
 }
