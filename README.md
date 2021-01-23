@@ -122,7 +122,7 @@ sail artisan migrate:fresh
 
 -   ユーザーの評価に関するクラス
 -   下のクラスの関数を順番に実行、累積分布
--   最終的なランク、点数を返却(小数第３まで)
+-   最終的には結果を格納したカラムのidを返却
 
 #### 順番
 
@@ -184,6 +184,31 @@ sail artisan migrate:fresh
 3. getUserStats setUserStatsを受け取るために使用 : evaluationの途中で使用
 4. setUserRank 計算後のランクを登録 : evaluationの最後に使用
 5. finishTask まだ未実装 タスク終了フラグを立てる : evaluationの最後に使用
+
+**その他**
+
+* getResult : setUserRankから得られたidを受け取り結果を返す
+
+## Command
+
+* タスクをキューに入れる必要が出てきてその呼び出しを簡潔化させるためにコマンドを作成
+
+### EvaluateCommand
+
+* name,mailを受け取り必要な値をDBに格納、格納後のカラムのidを返却
+* name,mailを受け取るのではなく事前にidを生成して計算しても良さそう
+
+### SendResultCommand
+
+* idを受け取ってそのカラムを取得、メールを送信
+
+## Queue
+
+* 今回はキューの数が少ないと考えられ早く処理したいのでRedisを採用
+
+
+
+
 
 ## 今の課題
 
