@@ -194,10 +194,15 @@
             <h3 class="my-4 text-3xl leading-tight">
                 It Well Increase Your Motivation
             </h3>
-            <button
-                class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                Action!
-            </button>
+            <h5 class="text-2xl leading-tight">
+                I am expecting to send the result within one hour but will matter how much
+                its used at that time. If the result doesn't come in more than a day it
+                might be because of a server error. Please try it again. If you still can't
+                see the result please send an issue to
+                <a href='https://github.com/SakaiTaka23/engineerEvaluation' target="_blank" rel="noopener noreferrer"
+                    class="hover:bg-gray-600">this repository</a>
+                .
+            </h5>
         </section>
     </body>
 
