@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\SendMock;
 use App\Mail\SendResult;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
@@ -28,9 +29,10 @@ class SendResultCommand extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(object $result)
     {
         parent::__construct();
+        $this->result = $result;
     }
 
     /**
@@ -41,6 +43,6 @@ class SendResultCommand extends Command
     public function handle():void
     {
         $to = $this->argument('to');
-        Mail::to($to)->send(new SendResult());
+        Mail::to($to)->send(new SendResult($this->result));
     }
 }

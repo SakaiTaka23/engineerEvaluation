@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendResult extends Mailable
+class SendMock extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,9 +16,9 @@ class SendResult extends Mailable
      *
      * @return void
      */
-    public function __construct(object $result)
+    public function __construct()
     {
-        $this->result = $result;
+        //
     }
 
     /**
@@ -28,6 +28,6 @@ class SendResult extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.result');
+        return $this->view('mail.test');
     }
 }
