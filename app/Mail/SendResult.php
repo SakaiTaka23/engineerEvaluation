@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -34,6 +33,6 @@ class SendResult extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.result');
+        return $this->markdown('emails.result');
     }
 }

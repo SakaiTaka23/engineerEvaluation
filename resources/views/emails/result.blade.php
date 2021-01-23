@@ -1,22 +1,38 @@
-<!DOCTYPE html>
-<html lang='ja'>
+@component('mail::message')
+# Results
 
-    <head>
-        <meta charset='UTF-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <meta http-equiv='X-UA-Compatible' content='ie=edge'>
-        <title>Document</title>
-    </head>
+<div>Thank You for using EngineerEvaluation!</div>
+<div>The values are only from public repos</div>
+<br>
 
-    <body>
-        <div>{{ $result->name }}</div>
-        <div>{{ $result->public_repo }}</div>
-        <div>{{ $result->commit_sum }}</div>
-        <div>{{ $result->issues }}</div>
-        <div>{{ $result->pull_requests }}</div>
-        <div>{{ $result->star_sum }}</div>
-        <div>{{ $result->followers }}</div>
-        <div>{{ $result->user_rank }}</div>
-    </body>
+# {{ $result->name }}
+@component('mail::table')
+| Element | Value |
+| :-------------: |:-------------:|
+| Public Repo | {{ $result->public_repo}} |
+| Contributions | {{ $result->commit_sum }} |
+| Issues | {{ $result->issues }} |
+| Pull Requests | {{ $result->pull_requests }} |
+| Star | {{ $result->star_sum }} |
+| Followers | {{ $result->followers }} |
+@endcomponent
 
-</html>
+@component('mail::panel')
+Your Rank
+{{ $result->user_rank }}
+@endcomponent
+
+〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜
+<br>
+Engineer Evaluation
+
+Made by
+<br>
+SakaiTaka23
+<br>
+Repository
+<br>
+<a href='https://github.com/SakaiTaka23/engineerEvaluation'>https://github.com/SakaiTaka23/engineerEvaluation</a>
+<br>
+〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜
+@endcomponent

@@ -72,7 +72,7 @@
             <section class="bg-white border-b py-8">
                 <div class="container max-w-5xl mx-auto m-8">
                     <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-                        {{ $viewModel->userName }}
+                        {{ $viewModel->userName ?? 'name' }}
                     </h1>
                     <div class="w-full mb-4">
                         <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
@@ -104,7 +104,8 @@
                                                 src='{{ asset('svg/result_status/public_repo.svg') }}'
                                                 alt='public repo'></td>
                                         <td class="py-4 px-6 border-b border-grey-light">Public Repo</td>
-                                        <td class="py-4 px-6 border-b border-grey-light">{{ $viewModel->publicRepo }}
+                                        <td class="py-4 px-6 border-b border-grey-light">
+                                            {{ $viewModel->publicRepo ?? 0 }}
                                         </td>
                                     </tr>
                                     <tr class="hover:bg-grey-lighter">
@@ -112,35 +113,40 @@
                                                 src='{{ asset('svg/result_status/contributions.svg') }}'
                                                 alt='contributions'></td>
                                         <td class="py-4 px-6 border-b border-grey-light">Contributions</td>
-                                        <td class="py-4 px-6 border-b border-grey-light">{{ $viewModel->commitSum }}
+                                        <td class="py-4 px-6 border-b border-grey-light">
+                                            {{ $viewModel->commitSum ?? 0 }}
                                         </td>
                                     </tr>
                                     <tr class="hover:bg-grey-lighter">
                                         <td class="py-4 px-6 border-b border-grey-light"><img
                                                 src='{{ asset('svg/result_status/issue.svg') }}' alt='issue'></td>
                                         <td class="py-4 px-6 border-b border-grey-light">Issues</td>
-                                        <td class="py-4 px-6 border-b border-grey-light">{{ $viewModel->issues }}</td>
+                                        <td class="py-4 px-6 border-b border-grey-light">{{ $viewModel->issues ?? 0 }}
+                                        </td>
                                     </tr>
                                     <tr class="hover:bg-grey-lighter">
                                         <td class="py-4 px-6 border-b border-grey-light"><img
                                                 src='{{ asset('svg/result_status/pull_request.svg') }}'
                                                 alt='pull request'></td>
                                         <td class="py-4 px-6 border-b border-grey-light">Pull Requests</td>
-                                        <td class="py-4 px-6 border-b border-grey-light">{{ $viewModel->pullRequest }}
+                                        <td class="py-4 px-6 border-b border-grey-light">
+                                            {{ $viewModel->pullRequest ?? 0 }}
                                         </td>
                                     </tr>
                                     <tr class="hover:bg-grey-lighter">
                                         <td class="py-4 px-6 border-b border-grey-light"><img
                                                 src='{{ asset('svg/result_status/star.svg') }}' alt='star'></td>
                                         <td class="py-4 px-6 border-b border-grey-light">Star</td>
-                                        <td class="py-4 px-6 border-b border-grey-light">{{ $viewModel->starSum }}</td>
+                                        <td class="py-4 px-6 border-b border-grey-light">{{ $viewModel->starSum ?? 0 }}
+                                        </td>
                                     </tr>
                                     <tr class="hover:bg-grey-lighter">
                                         <td class="py-4 px-6 border-b border-grey-light"><img
                                                 src='{{ asset('svg/result_status/followers.svg') }}' alt='followers'>
                                         </td>
                                         <td class="py-4 px-6 border-b border-grey-light">Followers</td>
-                                        <td class="py-4 px-6 border-b border-grey-light">{{ $viewModel->followers }}
+                                        <td class="py-4 px-6 border-b border-grey-light">
+                                            {{ $viewModel->followers ?? 0 }}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -151,7 +157,7 @@
                             <div class="w-full mb-4">
                                 <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
                             </div>
-                            <h1>{{ $viewModel->rank }}</h1>
+                            <h1>{{ $viewModel->rank ?? 0 }}</h1>
                         </div>
                     </div>
 
