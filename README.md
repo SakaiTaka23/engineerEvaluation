@@ -26,6 +26,17 @@ sail artisan key:generate
 sail artisan migrate:fresh
 ```
 
+### queue
+
+```shell
+# sail コンテナ内で
+php artisan queue:work
+# コンテナ外
+sail artisan queue:work
+```
+
+
+
 ## Route
 
 | Method | URL        | Action |
@@ -37,13 +48,21 @@ sail artisan migrate:fresh
 -   /にはランディングページや計算ロジック、背景を置く
 -   ランディングページにはアルゴリズムも書く、場所がありそうなら index ルートのフォームも付け足す？
 
+## コントローラー
+
+* 計算をさせると重くなってしまうため今回は機能を絞って作成
+
+1. ユーザーの入力のバリデーション 名前に関しては本当にGitHub上に存在する名前かどうか判定
+2. タスクを開始するためにカラムを作成
+3. 作成したカラムのidを受け取りそのidをキューに設定
+4. そのまま値は特に返さずビューを表示 **名前,emailあたりは確認のため返してもいいかも？**
+
 ## ビューに渡す要素
 
-| route            | value needed               |
-| ---------------- | -------------------------- |
-| /                | -                          |
-| /valuation(GET)  | - フォームを渡すだけ       |
-| /valuation(POST) | 名前、個々の値、評価の結果 |
+| route            | value needed |
+| ---------------- | ------------ |
+| /                | -            |
+| /valuation(POST) | -            |
 
 ## DB
 
@@ -206,14 +225,6 @@ sail artisan migrate:fresh
 
 * 今回はキューの数が少ないと考えられ早く処理したいのでRedisを採用
 
-
-
-
-
-## 今の課題
-
--   api トークンの扱い → 自分以外のユーザーもいるので自分のものだけでは厳しそう
-
 ## TODO
 
 -   [x] php cx fixer 
@@ -221,16 +232,20 @@ sail artisan migrate:fresh
 -   [x] FetchData を FetchGitHubAPI に直す
 -   [x]  修正後のFetchGitHubAPI内の fetch を削除
 -   [x] setName 修正→全ての引数に名前を取ることにした
--   [ ] commandのドキュメントも作成
-
--   [ ] 全体の改良
+-   [x] commandのドキュメントも作成
+-   [x] 全体の改良
 -   [ ] 共有しやすくする
+-   [ ] メールの内容を整える ipとか入れてもいいかも
+-   [ ] 待機画面を整える
+-   [ ] DB改良→ タスクが済んだらデータを消す or  同じ名前の人が入力したらデータを上書きする
+-   [ ] ipによるアクセス制限 一度判定すると30分休みなど
+-   [ ] 
 
 
 
 ## Features
 
--   [ ] 全体の改良
+-   [x] 全体の改良
 
 -   [x] 1. DB にデータを保存 とりあえずロジックは変えずにDB保存を追加するだけ読み出さずに検証→実際にDBのみに保存して検証
 -   [x] 2. ロジックをコマンド化
