@@ -13,7 +13,17 @@ class EvaluationJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    /**
+     * コンストラクタのid
+     * @var int
+     */
     protected $id;
+
+    /**
+     * 失敗した後何度再実行するか
+     * @var int
+     */
+    public $tries = 2;
 
     /**
      * Create a new job instance.

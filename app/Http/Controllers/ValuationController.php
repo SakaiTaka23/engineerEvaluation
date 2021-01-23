@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\EvaluationJob;
-use App\Mail\SendResult;
 use App\Repositories\UserRepositoryInterface;
 use App\Rules\UserExists;
 use Illuminate\Http\Request;
 
 use App\Service\CalculateRankInterface;
-use Illuminate\Support\Facades\Mail;
 
 class ValuationController extends Controller
 {
