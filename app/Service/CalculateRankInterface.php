@@ -10,7 +10,7 @@ interface CalculateRankInterface
      * @param string $name
      * @return int 結果を格納したidを返す
      */
-    public function evaluation(string $name,string $mail): int;
+    public function evaluation(string $name, string $mail): int;
 
     /**
      * 累積分布関数の計算

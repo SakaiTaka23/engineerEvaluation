@@ -10,13 +10,13 @@
 
     <body>
         <div>{{ $result->name }}</div>
-        <div>{{ $reuslt->public_repo }}</div>
-        <div>{{ $reuslt->commit_sum }}</div>
-        <div>{{ $reuslt->issues }}</div>
-        <div>{{ $reuslt->pull_requests }}</div>
-        <div>{{ $reuslt->star_sum }}</div>
-        <div>{{ $reuslt->followers }}</div>
-        <div>{{ $reuslt->user_rank }}</div>
+        <div>{{ $result->public_repo }}</div>
+        <div>{{ $result->commit_sum }}</div>
+        <div>{{ $result->issues }}</div>
+        <div>{{ $result->pull_requests }}</div>
+        <div>{{ $result->star_sum }}</div>
+        <div>{{ $result->followers }}</div>
+        <div>{{ $result->user_rank }}</div>
     </body>
 
 </html>

@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Mail\SendMock;
 use App\Mail\SendResult;
+use App\Repositories\UserRepository;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
@@ -15,7 +15,7 @@ class SendResultCommand extends Command
      * @var string
      */
     protected $signature = 'task:sendresult
-                            {to : where to send the mail}';
+                            {id : whitch result to send}';
 
     /**
      * The console command description.
@@ -41,7 +41,9 @@ class SendResultCommand extends Command
      */
     public function handle():void
     {
-        $to = $this->argument('to');
-        Mail::to($to)->send(new SendMock());
+        $id = $this->argument('id');
+        $repo = new UserRepository();
+        $result = $repo->getResult($id);
+        Mail::to($result->email)->send(new SendResult($result));
     }
 }

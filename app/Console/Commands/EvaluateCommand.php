@@ -43,6 +43,6 @@ class EvaluateCommand extends Command
         $name = $this->argument('name');
         $mail = $this->argument('mail');
         dd($this->calc->evaluation($name, $mail));
-        return $this->calc->evaluation($name,$mail);
+        return $this->calc->evaluation($name, $mail);
     }
 }

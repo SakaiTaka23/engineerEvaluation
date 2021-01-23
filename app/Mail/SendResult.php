@@ -12,6 +12,12 @@ class SendResult extends Mailable
     use Queueable, SerializesModels;
 
     /**
+     * object インスタンス
+     * @var object {name,email,public_repo,commit_sum,issues,pull_requests,star_sum,followers}
+     */
+    public $result;
+
+    /**
      * Create a new message instance.
      *
      * @return void

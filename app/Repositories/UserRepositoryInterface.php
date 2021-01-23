@@ -10,7 +10,7 @@ interface UserRepositoryInterface
      * @param string $name
      * @return void
      */
-    public function setTask(string $name,string $mail):void;
+    public function setTask(string $name, string $mail):void;
 
     /**
      * 取得したユーザーのデータをDBへ保存
@@ -42,12 +42,19 @@ interface UserRepositoryInterface
     public function setUserRank(string $name, string $rank):void;
 
     /**
-     * 今までの結果を取得、返却
-     * コレクションを整形して返したい
+     * 今までの値を格納したidを返す
      * @param string $name
      * @return
      */
     public function getResultId(string $name):int;
+
+
+    /**
+     * idを引数としてとり該当のもの、基本情報を取得、返却
+     * @param int $id
+     * @return object {name,email,public_repo,commit_sum,issues,pull_requests,star_sum,followers}
+     */
+    public function getResult(int $id):object;
 
     /**
      * タスクをコマンド化するときに実装
