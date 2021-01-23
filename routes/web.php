@@ -19,7 +19,3 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::post('loading', [ValuationController::class,'loading'])->name('valuationLoading');
-
-Route::get('/test', function () {
-    return view('result');
-});
