@@ -29,10 +29,9 @@ class SendResultCommand extends Command
      *
      * @return void
      */
-    public function __construct(object $result)
+    public function __construct()
     {
         parent::__construct();
-        $this->result = $result;
     }
 
     /**
@@ -43,6 +42,6 @@ class SendResultCommand extends Command
     public function handle():void
     {
         $to = $this->argument('to');
-        Mail::to($to)->send(new SendResult($this->result));
+        Mail::to($to)->send(new SendMock());
     }
 }

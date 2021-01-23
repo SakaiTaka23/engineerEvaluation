@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\DB;
 
 class UserRepository implements UserRepositoryInterface
 {
-    public function setTask(string $name): void
+    public function setTask(string $name,string $mail): void
     {
-        DB::table('users')->insert(['name'=>$name]);
+        DB::table('users')->insert(['name'=>$name,'email'=>$mail]);
     }
 
     public function setUserStats(string $name, int $publicRepo, int $commitSum, int $issues, int $pullRequests, int $starSum, int $followers): void
@@ -41,11 +41,11 @@ class UserRepository implements UserRepositoryInterface
             ]);
     }
 
-    public function getResults(string $name):object
+    public function getResultId(string $name):int
     {
-        return DB::table('users')
+        return intval(DB::table('users')
         ->where('name', $name)
-        ->select(['name','public_repo','commit_sum','issues','pull_requests','star_sum','followers','user_rank'])
-        ->first();
+        ->select(['id'])
+        ->first()->id);
     }
 }

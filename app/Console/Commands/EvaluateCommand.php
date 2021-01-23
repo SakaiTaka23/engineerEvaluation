@@ -13,7 +13,8 @@ class EvaluateCommand extends Command
      * @var string
      */
     protected $signature = 'task:evaluate 
-                            {name : the username}';
+                            {name : the username}
+                            {mail : the address to send result}';
 
     /**
      * The console command description.
@@ -35,11 +36,13 @@ class EvaluateCommand extends Command
 
     /**
      *エンジニアを評価する専用のコマンド
-     * @return object {name,public_repo,commit_sum,issues,pull_requests,star_sum,followers,user_rank}
+     * @return int 結果を格納したidを返す
      */
-    public function handle() : object
+    public function handle() : int
     {
         $name = $this->argument('name');
-        return $this->calc->evaluation($name);
+        $mail = $this->argument('mail');
+        dd($this->calc->evaluation($name, $mail));
+        return $this->calc->evaluation($name,$mail);
     }
 }

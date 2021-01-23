@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('email');
             $table->integer('public_repo')->default(0);
             $table->integer('commit_sum')->default(0);
             $table->integer('issues')->default(0);

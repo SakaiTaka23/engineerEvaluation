@@ -18,9 +18,9 @@ class CalculateRank implements CalculateRankInterface
         $this->repository = $repository;
     }
 
-    public function evaluation(string $name): object
+    public function evaluation(string $name,string $mail): int
     {
-        $this->repository->setTask($name);
+        $this->repository->setTask($name,$mail);
         $this->fetch->summarizeData($name);
         $userStats = $this->repository->getUserStats($name);
         $userScore = $this->offset->calcScore(
@@ -36,8 +36,8 @@ class CalculateRank implements CalculateRankInterface
         $normalizedScore = round($this->normalCdf($userScore, $totalValue, $allOffset) * 100, 3);
         $userRank = $this->rank->calcRank($normalizedScore);
         $this->repository->setUserRank($name, $userRank);
-        $result = $this->repository->getResults($name);
-        return $result;
+        $resultId = $this->repository->getResultId($name);
+        return $resultId;
     }
 
     public function normalCdf(int $mean, int $sigma, int $to): float

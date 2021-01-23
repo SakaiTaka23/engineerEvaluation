@@ -72,6 +72,7 @@ sail artisan migrate:fresh
 | ------------- | ------ |
 | id            | id     |
 | name          | string |
+| email         | string |
 | public_repo   | int    |
 | commit_sum    | int    |
 | issues        | int    |

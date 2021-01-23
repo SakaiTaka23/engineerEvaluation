@@ -42,7 +42,7 @@ class ValuationController extends Controller
             'email' => $request->email,
         ];
         var_dump($mailTo);
-        Mail::to($mailTo)->send(new SendResult());
+        // Mail::to($mailTo)->send(new SendResult());
 
         return view('loading');
     }

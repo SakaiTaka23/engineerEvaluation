@@ -8,9 +8,9 @@ interface CalculateRankInterface
      * 他の関数を呼び出す軸
      * 返り値の要素は固定
      * @param string $name
-     * @return object {name,public_repo,commit_sum,issues,pull_requests,star_sum,followers,user_rank}
+     * @return int 結果を格納したidを返す
      */
-    public function evaluation(string $name): object;
+    public function evaluation(string $name,string $mail): int;
 
     /**
      * 累積分布関数の計算

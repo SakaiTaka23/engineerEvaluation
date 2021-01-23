@@ -10,7 +10,7 @@ interface UserRepositoryInterface
      * @param string $name
      * @return void
      */
-    public function setTask(string $name):void;
+    public function setTask(string $name,string $mail):void;
 
     /**
      * 取得したユーザーのデータをDBへ保存
@@ -47,7 +47,7 @@ interface UserRepositoryInterface
      * @param string $name
      * @return
      */
-    public function getResults(string $name):object;
+    public function getResultId(string $name):int;
 
     /**
      * タスクをコマンド化するときに実装
