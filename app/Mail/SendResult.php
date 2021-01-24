@@ -33,6 +33,17 @@ class SendResult extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.result');
+        $url = ' https://twitter.com/intent/tweet?text=My GitHub Evaluation%0AName : ' . $this->result->name .
+        '%0APublic Repo : ' . $this->result->public_repo .
+        '%0AContributions : ' . $this->result->commit_sum .
+        '%0AIssues : ' . $this->result->issues .
+        '%0APull Requests : ' . $this->result->pull_requests .
+        '%0AStar : ' . $this->result->star_sum .
+        '%0AFollowers : ' . $this->result->followers .
+        '%0ARank : ' . $this->result->user_rank .
+        '%0A&hashtags=engineerEvaluation';
+        return $this->markdown('emails.result',[
+            'url' => $url,
+        ]);
     }
 }

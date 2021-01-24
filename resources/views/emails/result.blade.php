@@ -22,6 +22,10 @@ Your Rank
 {{ $result->user_rank }}
 @endcomponent
 
+@component('mail::button', ['url' => $url])
+Share This Post In Twitter
+@endcomponent
+
 〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜
 <br>
 Engineer Evaluation
