@@ -61,18 +61,15 @@
                             <input type="text" name="name" id="name"
                                 class="shadow appearance-none border rounded py-2 px-3 text-gray-darker"
                                 placeholder="Your GitHub Name" style="color: black">
+                            @error('name')
+                            <div class="text-red-400">{{ $message }}</div>
+                            @enderror
                             <input type="text" name="email" id="email"
-                                class="shadow appearance-none border rounded py-2 px-3 text-gray-darker"
+                                class="shadow appearance-none border rounded py-2 px-3 text-gray-darker mt-3"
                                 placeholder="Your Email" style="color: black">
-                            @if ($errors->any())
-                            <div class="text-red-500">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif
+                            @error('email')
+                            <div class="text-red-400">{{ $message }}</div>
+                            @enderror
                             <button
                                 class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                                 Check
