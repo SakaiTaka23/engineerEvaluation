@@ -7,6 +7,7 @@ interface UserRepositoryInterface
 
     /**
      * タスクの初期設定 名前をDBへ保存
+     * 名前が既にDBに存在する場合は上書きする
      * @param string $name
      * @return int 作成したカラムのid
      */

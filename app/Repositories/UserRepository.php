@@ -8,7 +8,15 @@ class UserRepository implements UserRepositoryInterface
 {
     public function setTask(string $name, string $mail): int
     {
-        return DB::table('users')->insertGetId(['name'=>$name,'email'=>$mail]);
+        DB::table('users')->updateOrInsert(
+            ['name' => $name],
+            ['email' => $mail]
+        );
+        return DB::table('users')
+        ->where('name',$name)
+        ->select(['id'])
+        ->first()
+        ->id;
     }
 
     public function getTask(int $id): string
