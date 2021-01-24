@@ -42,7 +42,7 @@ class SendResult extends Mailable
         '%0AFollowers : ' . $this->result->followers .
         '%0ARank : ' . $this->result->user_rank .
         '%0A&hashtags=engineerEvaluation';
-        return $this->markdown('emails.result',[
+        return $this->markdown('emails.result', [
             'url' => $url,
         ]);
     }

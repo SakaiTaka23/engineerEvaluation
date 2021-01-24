@@ -234,7 +234,7 @@ sail artisan queue:work
 - [x] setName 修正→全ての引数に名前を取ることにした
 - [x] commandのドキュメントも作成
 - [x] 全体の改良
-- [ ] 共有しやすくする
+- [x] 共有しやすくする
 - [x] メールの内容を整える
 - [x] 待機画面、ランディングページを整える
 - [x] ランディングページのformにold追加、待機画面に名前、メールアドレス表示
@@ -252,7 +252,7 @@ sail artisan queue:work
 
 
 
--   [ ] 共有しやすくする
--   [ ] 1. twitter 拡散ボタン
--   [ ] 2. twitter card 作成
+-   [x] 共有しやすくする
+-   [x] 1. twitter 拡散ボタン
+-   [x] 2. twitter card 作成
 

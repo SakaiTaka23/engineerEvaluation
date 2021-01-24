@@ -32,6 +32,6 @@ class ValuationController extends Controller
             'mail' => $request->email
         ];
 
-        return view('loading',compact('viewModel'));
+        return view('loading', compact('viewModel'));
     }
 }

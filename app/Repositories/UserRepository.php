@@ -13,7 +13,7 @@ class UserRepository implements UserRepositoryInterface
             ['email' => $mail]
         );
         return DB::table('users')
-        ->where('name',$name)
+        ->where('name', $name)
         ->select(['id'])
         ->first()
         ->id;
