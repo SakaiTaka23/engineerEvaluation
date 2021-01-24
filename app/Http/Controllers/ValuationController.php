@@ -20,13 +20,18 @@ class ValuationController extends Controller
     public function loading(Request $request)
     {
         $request->validate([
-            'name' => ['required', new UserExists],
-            'email' => ['required','email']
+            'name' => ['bail','required', new UserExists],
+            'email' => ['bail','required','email']
         ]);
 
         $id = $this->repository->setTask($request->name, $request->email);
         EvaluationJob::dispatch($id);
 
-        return view('loading');
+        $viewModel = (object)[
+            'name' => $request->name,
+            'mail' => $request->email
+        ];
+
+        return view('loading',compact('viewModel'));
     }
 }

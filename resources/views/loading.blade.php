@@ -43,12 +43,14 @@
         <div class="pt-24">
             <div class="container px-3 mt-3 mb-6 mx-auto flex flex-wrap flex-col items-center">
                 <h1 class="my-4 mx-5 text-5xl font-bold leading-tight">
-                    Results
+                    Loading!
                 </h1>
                 <h2 class="text-4xl">
-                    We're now on task!
+                    We're now on task! {{ $viewModel->name }}!
                     <br>
-                    Plese wail for a minute and we well send the result to your email!
+                    Plese wail for a minute and we well send the result to your address below!
+                    <br>
+                    {{ $viewModel->mail }}
                 </h2>
             </div>
             <div class="relative -mt-12 lg:-mt-24">

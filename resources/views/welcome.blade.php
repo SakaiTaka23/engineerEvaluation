@@ -60,13 +60,13 @@
                         <div class='flex flex-col'>
                             <input type="text" name="name" id="name"
                                 class="shadow appearance-none border rounded py-2 px-3 text-gray-darker"
-                                placeholder="Your GitHub Name" style="color: black">
+                                placeholder="Your GitHub Name" value="{{ old('name') }}" style="color: black">
                             @error('name')
                             <div class="text-red-400">{{ $message }}</div>
                             @enderror
                             <input type="text" name="email" id="email"
                                 class="shadow appearance-none border rounded py-2 px-3 text-gray-darker mt-3"
-                                placeholder="Your Email" style="color: black">
+                                placeholder="Your Email" value="{{ old('email') }}" style="color: black">
                             @error('email')
                             <div class="text-red-400">{{ $message }}</div>
                             @enderror
@@ -197,7 +197,7 @@
                 might be because of a server error. Please try it again. If you still can't
                 see the result please send an issue to
                 <a href='https://github.com/SakaiTaka23/engineerEvaluation' target="_blank" rel="noopener noreferrer"
-                    class="hover:bg-gray-600">this repository</a>
+                    class="hover:bg-gray-600 underline">this repository</a>
                 .
             </h5>
         </section>

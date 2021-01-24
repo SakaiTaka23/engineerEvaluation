@@ -227,19 +227,18 @@ sail artisan queue:work
 
 ## TODO
 
--   [x] php cx fixer 
--   [x] php docs 適用
--   [x] FetchData を FetchGitHubAPI に直す
--   [x]  修正後のFetchGitHubAPI内の fetch を削除
--   [x] setName 修正→全ての引数に名前を取ることにした
--   [x] commandのドキュメントも作成
--   [x] 全体の改良
--   [ ] 共有しやすくする
--   [x] メールの内容を整える
--   [x] 待機画面、ランディングページを整える
--   [ ] ランディングページのformにold追加、待機画面に名前、メールアドレス表示
--   [x] DB改良→ 同じ名前の人が入力したらデータを上書きする
--   [ ] ipによるアクセス制限 一度判定すると30分休みなど
+- [x] php cx fixer 
+- [x] php docs 適用
+- [x] FetchData を FetchGitHubAPI に直す
+- [x] 修正後のFetchGitHubAPI内の fetch を削除
+- [x] setName 修正→全ての引数に名前を取ることにした
+- [x] commandのドキュメントも作成
+- [x] 全体の改良
+- [ ] 共有しやすくする
+- [x] メールの内容を整える
+- [x] 待機画面、ランディングページを整える
+- [x] ランディングページのformにold追加、待機画面に名前、メールアドレス表示
+- [x] DB改良→ 同じ名前の人が入力したらデータを上書きする
 
 ## Features
 
