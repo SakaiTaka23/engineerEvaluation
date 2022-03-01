@@ -41,7 +41,7 @@ class SendResult extends Mailable
         '%0AStar : ' . $this->result->star_sum .
         '%0AFollowers : ' . $this->result->followers .
         '%0ARank : ' . $this->result->user_rank .
-        '%0A&hashtags=engineerEvaluation';
+        '%0A&hashtags=Engineer Evaluation';
         return $this->markdown('emails.result', [
             'url' => $url,
         ]);

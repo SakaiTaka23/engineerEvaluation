@@ -1,7 +1,7 @@
 @component('mail::message')
 # Results
 
-<div>Thank You for using EngineerEvaluation!</div>
+<div>Thank You for using Engineer Evaluation!</div>
 <div>The values are only from public repos</div>
 <br>
 
