@@ -12,7 +12,7 @@ https://laravel.com/docs/8.x/sail
 git clone https://github.com/SakaiTaka23/instagram_clean.git
 cd instagram_clean
 
-cp .env.sail.example .env
+cp .env.example .env
 
 docker run --rm \
     -v $(pwd):/opt \
